@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Adventure Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Global Events Banner -->
+    <div id="global-events-banner" class="hidden">
+        <span id="event-text"></span>
+        <button id="close-event-button">×</button>
+    </div>
+
+    <!-- Name Modal -->
+    <div id="name-modal" class="modal">
+        <div class="modal-content">
+            <h2>Welcome, Adventurer!</h2>
+            <p>Enter your name to begin your journey:</p>
+            <input type="text" id="player-name-input" placeholder="Your Name" maxlength="20">
+            <button id="start-game-button">Start Adventure</button>
+        </div>
+    </div>
+
+    <!-- Class Selection Modal -->
+    <div id="class-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Choose Your Class</h2>
+            <div id="class-selection-area">
+                <div class="class-option" data-class="warrior">
+                    <h3>Warrior</h3>
+                    <p>Strong melee fighter with high health</p>
+                    <div class="class-stats">
+                        <span>HP: 120</span>
+                        <span>Attack: 15-25</span>
+                        <span>Defense: 8</span>
+                    </div>
+                </div>
+                <div class="class-option" data-class="mage">
+                    <h3>Mage</h3>
+                    <p>Magical spellcaster with powerful attacks</p>
+                    <div class="class-stats">
+                        <span>HP: 80</span>
+                        <span>Attack: 20-30</span>
+                        <span>Defense: 4</span>
+                    </div>
+                </div>
+                <div class="class-option" data-class="rogue">
+                    <h3>Rogue</h3>
+                    <p>Quick and agile with critical strikes</p>
+                    <div class="class-stats">
+                        <span>HP: 100</span>
+                        <span>Attack: 12-22</span>
+                        <span>Defense: 6</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button id="select-class-button" disabled>Select Class</button>
+                <button id="cancel-class-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Game Container -->
+    <div id="game-container">
+        <!-- Player Stats Panel -->
+        <div id="player-stats-panel">
+            <h3 id="player-name-display">Player</h3>
+            <div class="stat-bar">
+                <label>HP:</label>
+                <div class="hp-bar">
+                    <div id="player-hp-fill" class="hp-fill"></div>
+                    <span id="player-hp-text">100/100</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <span>Level: <span id="player-level">1</span></span>
+            </div>
+            <div class="stat-item">
+                <span>XP: <span id="player-xp">0</span>/<span id="player-xp-needed">100</span></span>
+            </div>
+            <div class="stat-item">
+                <span>Gold: <span id="player-gold">0</span></span>
+            </div>
+            <button id="choose-class-button">Change Class</button>
+            <button id="reset-game-button">Reset Game</button>
+        </div>
+
+        <!-- Map Area -->
+        <div id="map-area">
+            <div id="map-inner-content">
+                <canvas id="game-map" width="800" height="600"></canvas>
+            </div>
+        </div>
+
+        <!-- Battle Area -->
+        <div id="battle-area" class="hidden">
+            <div class="battle-header">
+                <h2 id="monster-name">Monster</h2>
+                <div class="hp-bar">
+                    <div id="monster-hp-fill" class="hp-fill"></div>
+                    <span id="monster-hp">100/100</span>
+                </div>
+            </div>
+            <div id="battle-log" class="log-area"></div>
+            <div class="battle-controls">
+                <button id="attack-button">Attack</button>
+                <button id="flee-button">Flee</button>
+            </div>
+            <div class="player-battle-stats">
+                <span>Your HP: <span id="player-hp">100/100</span></span>
+            </div>
+        </div>
+
+        <!-- Resource Gathering Area -->
+        <div id="resource-gathering-area" class="hidden">
+            <div class="gathering-header">
+                <h2 id="gathering-title">Resource Gathering</h2>
+                <div class="resource-info">
+                    <span>Resource: <span id="current-resource-name">None</span></span>
+                    <span>Tool: <span id="current-tool">None</span></span>
+                </div>
+                <div class="hp-bar">
+                    <div id="resource-hp-fill" class="hp-fill"></div>
+                    <span id="resource-hp">100/100</span>
+                </div>
+            </div>
+            <canvas id="resource-gathering-canvas" width="400" height="300"></canvas>
+            <div id="gathering-log" class="log-area"></div>
+            <div class="gathering-controls">
+                <button id="stop-gathering-button">Stop Gathering</button>
+            </div>
+        </div>
+
+        <!-- Castle Conquest Area -->
+        <div id="castle-conquest-area" class="hidden">
+            <div class="castle-header">
+                <h2 id="castle-name">Castle</h2>
+                <div class="castle-info">
+                    <span>Owner: <span id="castle-owner">None</span></span>
+                    <span>Progress: <span id="conquest-progress">0%</span></span>
+                    <span>Time: <span id="conquest-time">0s</span></span>
+                </div>
+            </div>
+            <div id="castle-log" class="log-area"></div>
+            <div class="castle-controls">
+                <button id="start-conquest-button">Start Conquest</button>
+                <button id="stop-conquest-button">Stop Conquest</button>
+                <button id="leave-castle-button">Leave Castle</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
